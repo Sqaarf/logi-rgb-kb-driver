@@ -1,0 +1,6 @@
+# Logitech G Pro keyboard: let the logged-in user access the hidraw nodes.
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c339", TAG+="uaccess"
+
+# Re-apply the saved colors when it's plugged in (it boots into its onboard rainbow).
+# Starts gpro-rgb-restore.service in the user's systemd instance.
+ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c339", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="gpro-rgb-restore.service"
